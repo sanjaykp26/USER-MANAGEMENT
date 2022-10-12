@@ -1,0 +1,114 @@
+  <!-- Responsive navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">User Management</a>
+      <button type="button" (click)="clickAddUser()"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-warning">add user</button>
+    </div>
+</nav>
+
+<table class="table mt-3 border-solid">
+  <thead>
+    <tr><th scope="col">user id</th>
+      <th scope="col">first name</th>
+      <th scope="col">last name</th>
+      <th scope="col">email id</th>
+      <th scope="col">mobile no</th>
+      <th scope="col">salary</th>
+      <th scope="col">action</th>
+      </tr>
+    
+
+  </thead>
+  <tbody>
+<tr *ngFor="let row of UserData">
+  <td>{{row.id}}</td>
+  <td>{{row.firstName}}</td>
+  <td>{{row.lastName}}</td>
+  <td>{{row.email}}</td>
+  <td>{{row.mobile}}</td>
+  <td>{{row.salary}}</td>
+  <td>
+    <button (click)="onEdit(row)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">edit</button>
+      <button (click)="deleteUser(row)" class="btn btn-danger ms-2">delete</button>  
+  </td>
+  </tr>
+    
+    
+
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">User details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          .<form [formGroup]="formValue">
+            <div class="mb-3">
+              <label for="exampleInputfirstname" class="form-label">first name</label>
+              <input type="text" formControlName="firstName" class="form-control" id="exampleInputfirstname" aria-describedby="emailHelp">
+            </div>
+            <div *ngIf="this.formValue.get('firstName')?.touched&&this.formValue.get('firstName')?.errors" class="m-3" style="color: red;">
+              please enter valid name
+          </div>
+            <div class="mb-3">
+              <label for="exampleInputlastname" class="form-label">last name</label>
+              <input type="text"formControlName="lastName" class="form-control" id="exampleInputlastname" aria-describedby="emailHelp">
+            </div>
+            <div *ngIf="this.formValue.get('lastName')?.touched&&this.formValue.get('lastName')?.errors" class="m-3" style="color: red;">
+              please enter valid name
+          </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email"formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div *ngIf="this.formValue.get('email')?.touched&&this.formValue.get('email')?.errors" class="m-3" style="color: red;">
+              please enter valid email address
+          </div>
+            <div class="mb-3">
+              <label for="exampleInputnumber" class="form-label">moblie number</label>
+              <input type="number" formControlName="mobile" class="form-control" id="exampleInputnumber">
+            </div>
+            <div *ngIf="this.formValue.get('mobile')?.touched&&this.formValue.get('mobile')?.errors" class="m-3" style="color: red;">
+              enter valid number
+          </div>
+            <div class="mb-3">
+              <label for="exampleInputsalary" class="form-label">salary</label>
+              <input type="number" formControlName="salary" class="form-control" id="exampleInputsalary">
+            </div>
+            <div *ngIf="this.formValue.get('salary')?.touched&&this.formValue.get('salary')?.errors" class="m-3" style="color: red;">
+              enter valid number
+          </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button"id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button"*ngIf="showadd"(click)="postUserDetails()" [disabled]="!formValue.valid" class="btn btn-primary">ADD</button>
+          <button type="button"*ngIf="showupdate"(click)=" updateUserDetails()"[disabled]="!formValue.valid" class="btn btn-primary">Update</button>     
+        </div>
+      </div>
+    </div>
+  </div>

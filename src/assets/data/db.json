@@ -1,0 +1,20 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "firstName": "SANAJY",
+      "lastName": "KP",
+      "email": "SANJU@GMAIL.COM",
+      "mobile": 8606392720,
+      "salary": 50000
+    },
+    {
+      "id": 2,
+      "firstName": "Jewel",
+      "lastName": "Alex",
+      "email": "jewelalex@gmail.com",
+      "mobile": 9897976566,
+      "salary": 60000
+    }
+  ]
+}
